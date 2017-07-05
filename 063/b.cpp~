@@ -1,0 +1,10 @@
+#include <iostream>
+#include <algorithm>
+usint namespace std;
+char s[27];
+int main(){
+  cin >> s;
+  sort(a.begin(),a.end());
+  cout << s;
+  
+}

@@ -1,0 +1,80 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#define ll long long
+#define N 100000
+#define int ll
+using namespace std;
+
+int parent[N];
+int size[N];
+
+int n ,q;
+
+vector<int>P;
+vector<int>A;
+vector<int>B;
+
+void init (int a){
+  for(int i = 0;i < a;i++){
+    parent[i]=i;
+    size[i]=0;
+  }
+}
+
+int root(int a ){
+  if(parent[a]==a) return a;
+  else {
+    return parent[a]=root(parent[a]);
+  }
+}
+
+int same(int a, int b){
+  if(root(a)==root(b))return 1;
+  else return 0;
+}
+
+void unite(int a, int b){
+  int x = root(a);
+  int y = root(b);
+  if(x==y) return;
+
+  if(size[x]<size[y]){
+    parent[x] = y;
+  }
+  else {
+    parent[y] = x;
+    if(size[x]==size[y]) size[x]++;
+  }
+}
+  
+
+signed main(){
+  int inpp,inpa,inpb;
+  cin >> n >> q;
+  for(int i = 0;i<q;i++){
+    cin >> inpp >> inpa >> inpb;
+    P.push_back(inpp);
+    P.push_back(inpa);
+    P.push_back(inpb);
+  }
+  init(n);
+
+  for(int i = 0;i<q;i++){
+    if(i == 1){
+      cout << "finished" << endl;
+      return 0;
+    }
+    if(P[i]==0){
+      unite(A[i],B[i]);
+    }
+    else{
+      if(same(A[i],B[i])) cout << "Yes"<< endl;
+      else cout << "No" << endl; 
+    }
+  }
+
+
+  return 0;
+  
+}

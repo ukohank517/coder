@@ -1,0 +1,29 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#define ll long long int
+using namespace std;
+
+struct inp {
+  int num;
+  int times;
+};
+
+int N,K;
+vector<inp> inps;
+//vector<pair<int ,int>> inps;
+
+int main(){
+  int a,b;
+  
+  cin >> N >> K;
+
+  for(int i=0;i<N;i++){
+    cin >> a >> b;
+    inps.emplace_back(a,b);
+  }
+    sort(inps[].begin(),inps[].end(),
+       [](const inp& x, const inp& y){return x.num<y.num;});
+  
+
+}

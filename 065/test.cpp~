@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+int main(){
+  
+  
+  vector<long> v_list;
+  v_list.push_back(100);
+  v_list.push_back(200);
+  v_list.push_back(300);
+  cout << find(v_list.begin(),v_list.end(),200) << endl;
+  return 0;
+}
