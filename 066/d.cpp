@@ -65,6 +65,7 @@ int main(){
   ll a1,a2;
   ll inp;
   ll same;
+  ll result;
   vector <ll> dis;
    
   cin >> n;
@@ -86,6 +87,8 @@ int main(){
 
   
   for (int i =1;i<=n+1;i++){
-    cout << aCb(n+1,i) - aCb(a1+a2 , i-1) << endl;
+    result = aCb(n+1,i) - aCb(a1+a2 , i-1);
+    if(result< 0) result += MOD;
+    cout << result << endl;
   }
 }
