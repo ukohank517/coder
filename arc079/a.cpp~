@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cstring>
+#include <iterator>
+
+#define ll long long
+
+using namespace std;
+
+
+ll N;
+vector <ll> a;
+
+int check(ll k){
+  vector <ll> vec;
+  ll q,c;
+  
+  for(ll i =0;i<N;i++){
+    vec.push_back(a[i]+k);
+  }
+  for(ll i = 0;i<N;i++){
+    q = vec[i]\(N+1);
+  c = vec[i]%(N+1);
+  }
+}
+
+
+int main(){
+  ll inp;
+
+  cin >> N;
+  for(ll i = 0;i< N ;i++){
+    cin >> inp;
+    a.push_back(inp-N+1);
+  }
+
+  check();
+  
+  for()
+}
