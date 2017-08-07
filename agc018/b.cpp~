@@ -1,0 +1,78 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cstring>
+#include <cmath>
+
+#define MOD 1000000007
+#define ll long long
+
+using namespace std;
+
+ll exist_element(const vector<ll> &a, ll element ){
+  for(ll i = 0;i<a.size();i++){
+    if(element == a[i]) return 1;
+  }
+  return 0;
+}
+
+
+int main(){
+  ll N, M;
+  ll inp;
+  
+  cin.tie(0);
+  ios::sync_with_stdio(false);
+
+  cin >> N >> M;//N人,M種スポーツ
+
+  vector <vector <ll> >A(N, vector<ll>(M) );//2重配列
+  vector <ll> skip;//このスポーツは検索しなくていい
+  vector <ll> sports(M,0);//各スポーツに参加する人数
+ 
+  ll result = 301;
+  
+  for(ll i = 0; i < N ;i++){
+    for(ll j =0; j<M;j++){
+      cin >> A[i][j] ;
+    }
+  }
+  
+  do{
+    //sports初期化
+    for(ll i = 0;i<sports.size();i++)sports[i]=0;
+    //hope初期化
+    vector <ll> hope(N,0);// N人の第一希望は0番目の希望。
+    
+    //skipによって、hope更新（それぞれの人が残った競技の中の何番目希望を選ぶか）
+    for(ll i = 0;i<N;i++){
+      inp = 0;//第一希望の番号
+      for(ll j = 0;j<M;j++){//競技M
+	if(exist_element(skip,j))continue;//この競技が飛ばされてるかどうか
+	if(A[i][j]>inp){
+	  inp=A[i][j];
+	  hope[i] = j;
+	}
+      }
+    }
+
+    //sportsの更新、（それぞれの希望番号より、それぞれのsportsは何人参加するかを探索
+    for(ll i = 0;i<hope.size();i++){
+      sports[hope[i]]++;
+    }
+
+    vector<ll>::iterator Max;
+    Max = max_element(sports.begin(), sports.end()); 
+    //sportsのmaxを取り出し、skipにいれる
+    skip.push_back(distance(sports.begin(), Max));
+
+    //result の更新
+    if(result > Max[0]) result = Max[0];
+
+        for(int i = 0; i< skip.size();i++)cout << skip[i] << " " ;
+    cout << endl;
+  }while(skip.size()<M);
+  
+  cout << result << endl;
+  return 0;
+}
