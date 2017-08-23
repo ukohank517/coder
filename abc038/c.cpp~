@@ -1,0 +1,15 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+#define ll long long
+
+int main(){
+  ll N;
+  vector<ll> a;
+
+  cin >> N;
+  for(ll i =0;i<N;i++){
+    ll inp;
+    a.push_back(inp);
+  }
+}
