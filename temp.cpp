@@ -16,9 +16,9 @@ using namespace std;
 #define rep(i,n) FOR(i,0,n)
 #define pb push_back
 #define mp make_pair
-#define all(s) a.begin(),a.end()
-#define rall(s) a.rbegin(),a.rend()
-#define rmsame(a) a.erase(unique(all(a)), a.end())
+#define all(a) a.begin(),a.end()
+#define rall(a) a.rbegin(),a.rend()
+#define rmsame(a) sort(all(a)),a.erase(unique(all(a)), a.end())
 int main(){
   cin.tie(0);
   ios::sync_with_stdio(false);
