@@ -6,17 +6,24 @@
 #include <map>
 #include <queue>
 #include <cmath>
+#include <complex> // complex<double> a(1.2 , 2.3);// real(): 1.2, imag()2.3
+using namespace std;
 
 #define MOD 1000000007
 #define ll long long
 #define ld long double
-
-using namespace std;
-
-
+#define FOR(i,a,b) for(ll i=(ll)a;i<(ll)b;i++)
+#define rep(i,n) FOR(i,0,n)
+#define pb push_back
+#define mp make_pair
+#define all(s) a.begin(),a.end()
+#define rall(s) a.rbegin(),a.rend()
+#define rmsame(a) a.erase(unique(all(a)), a.end())
 int main(){
   cin.tie(0);
   ios::sync_with_stdio(false);
 
+
+  
   return 0;
 }
