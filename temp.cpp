@@ -19,6 +19,7 @@ using namespace std;
 #define all(a) a.begin(),a.end()
 #define rall(a) a.rbegin(),a.rend()
 #define rmsame(a) sort(all(a)),a.erase(unique(all(a)), a.end())
+
 int main(){
   cin.tie(0);
   ios::sync_with_stdio(false);
