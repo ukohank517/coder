@@ -19,6 +19,7 @@ using namespace std;
 #define all(a) a.begin(),a.end()
 #define rall(a) a.rbegin(),a.rend()
 #define rmsame(a) sort(all(a)),a.erase(unique(all(a)), a.end())
+#define rmvector(a,b) rep(i,a.size())rep(j,b.size())if(a[i]==b[j]){a.erase(a.begin()+i);i--;break;}
 
 int main(){
   cin.tie(0);
