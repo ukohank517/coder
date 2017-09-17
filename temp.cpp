@@ -20,6 +20,8 @@ using namespace std;
 #define rall(a) a.rbegin(),a.rend()
 #define rmsame(a) sort(all(a)),a.erase(unique(all(a)), a.end())
 #define rmvector(a,b) rep(i,a.size())rep(j,b.size())if(a[i]==b[j]){a.erase(a.begin()+i);i--;break;}
+template<typename X> bool exist(vector<X> vec, X item){return find(all(vec), item)!=vec.end();}
+
 
 int main(){
   cin.tie(0);
