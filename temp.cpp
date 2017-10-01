@@ -22,7 +22,6 @@ using namespace std;
 #define rmvector(a,b) rep(i,a.size())rep(j,b.size())if(a[i]==b[j]){a.erase(a.begin()+i);i--;break;}
 template<typename X> bool exist(vector<X> vec, X item){return find(all(vec), item)!=vec.end();}
 
-
 int main(){
   cin.tie(0);
   ios::sync_with_stdio(false);
