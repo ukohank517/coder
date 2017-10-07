@@ -27,6 +27,7 @@ int main(){
   ios::sync_with_stdio(false);
 
 
-  
+
+  //cout << fixed << setprecision(16) << ans << endl;
   return 0;
 }
