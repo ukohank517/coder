@@ -26,32 +26,24 @@ int main(){
   cin.tie(0);
   ios::sync_with_stdio(false);
 
-  string N;
-  cin >> N;
+  string str;
+  cin >> str;
+  vector<bool> zero;
+
+  zero.pb(str[0]=='0');
+  for(int i = 1; i<str.size();i+=2){
+    if(str[i]=='+'){
+      zero.pb(str[i+1]=='0');
+    }
+    else{//*
+      if(str[i+1]=='0')
+	zero[zero.size()-1] = true;
+    }
+    
+  }
 
   ll ans = 0;
-  vector<ll>stock;
-  
-  rep(i,N.size()){
-    if(N[i]=='*'){
-      stock.pb(N[i-1]-'0');
-      stock.pb(N[i+1]-'0');
-    }
-    if(N[i]=='+'){
-      if((stock.size()==0) && (N[i-1]!=0)) ans++;
-      else if(stock.size()!=0){
-	sort(all(stock));
-	if(stock[0]!=0) ans++;
-      }
-      stock.clear();      
-    }
-  }
-
-  if(stock.size()!=0){
-    sort(all(stock));
-    if(stock[0]!=0) ans ++;
-  }
+  rep(i,zero.size())if(!zero[i])ans++;
   cout << ans << endl;
-  //cout << fixed << setprecision(16) << ans << endl;
   return 0;
 }
