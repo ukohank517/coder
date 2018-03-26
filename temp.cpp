@@ -21,13 +21,17 @@ using namespace std;
 #define rmsame(a) sort(all(a)),a.erase(unique(all(a)), a.end())
 #define rmvector(a,b) rep(i,a.size())rep(j,b.size())if(a[i]==b[j]){a.erase(a.begin()+i);i--;break;}
 template<typename X> bool exist(vector<X> vec, X item){return find(all(vec), item)!=vec.end();}
+ll gcd(ll a, ll b){if(b==0)return a;return gcd(b,a%b);}
+ll lcm(ll a, ll b){return a/gcd(a,b)*b;}
+
+
 
 int main(){
   cin.tie(0);
   ios::sync_with_stdio(false);
 
 
-
+  
   //cout << fixed << setprecision(16) << ans << endl;
   return 0;
 }
