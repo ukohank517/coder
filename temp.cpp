@@ -20,20 +20,19 @@ using namespace std;
 #define rall(a) a.rbegin(),a.rend()
 #define rmsame(a) sort(all(a)),a.erase(unique(all(a)), a.end())
 #define rmvector(a,b) rep(i,a.size())rep(j,b.size())if(a[i]==b[j]){a.erase(a.begin()+i);i--;break;}
-#define pq_pair_tB priority_queue <pair<ll,ll>, vector<pair<ll,ll> > , greater<pair<ll,ll> > > 
+#define pq_pair_tB priority_queue <pair<ll,ll>, vector<pair<ll,ll> > , greater<pair<ll,ll> > >
 #define pq_pair_ts priority_queue <pair<ll,ll> > //第二成分の大きさが関係ない
 template<typename X> bool exist(vector<X> vec, X item){return find(all(vec), item)!=vec.end();}
 ll gcd(ll a, ll b){if(b==0)return a;return gcd(b,a%b);}
 ll lcm(ll a, ll b){return a/gcd(a,b)*b;}
-
+ll power(ll x, ll n){if(n == 0) return 1;return  (n%2)? x*power(x, n-1)%MOD : power(x*x%MOD, n/2);}
 
 int main(){
-  cin.tie(0);
-  ios::sync_with_stdio(false);
+    cin.tie(0);
+    ios::sync_with_stdio(false);
 
-  
-  
-  
-  //cout << fixed << setprecision(16) << ans << endl;
-  return 0;
+
+
+    //cout << fixed << setprecision(16) << ans << endl;
+    return 0;
 }
