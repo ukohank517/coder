@@ -20,8 +20,11 @@ using namespace std;
 #define rall(a) a.rbegin(),a.rend()
 #define rmsame(a) sort(all(a)),a.erase(unique(all(a)), a.end())
 #define rmvector(a,b) rep(i,a.size())rep(j,b.size())if(a[i]==b[j]){a.erase(a.begin()+i);i--;break;}
+#define first_more_idx(ve, num) upper_bound(all(ve), num)-ve.begin() // idx = first_more_idx(ve,num); if(idx = ve.size()) , then not exist
+
+#define first_lessequal_idx(ve, num) lower_bound(all(ve), num)-ve.begin()
 #define pq_pair_tB priority_queue <pair<ll,ll>, vector<pair<ll,ll> > , greater<pair<ll,ll> > >
-#define pq_pair_ts priority_queue <pair<ll,ll> > //第二成分の大きさが関係ない
+#define pq_pair_ts priority_queue <pair<ll,ll> > // only sort first param
 template<typename X> bool exist(vector<X> vec, X item){return find(all(vec), item)!=vec.end();}
 ll gcd(ll a, ll b){if(b==0)return a;return gcd(b,a%b);}
 ll lcm(ll a, ll b){return a/gcd(a,b)*b;}
