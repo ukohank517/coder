@@ -21,7 +21,6 @@ using namespace std;
 #define rmsame(a) sort(all(a)),a.erase(unique(all(a)), a.end())
 #define rmvector(a,b) rep(i,a.size())rep(j,b.size())if(a[i]==b[j]){a.erase(a.begin()+i);i--;break;}
 #define first_more_idx(ve, num) upper_bound(all(ve), num)-ve.begin() // idx = first_more_idx(ve,num); if(idx = ve.size()) , then not exist
-
 #define first_lessequal_idx(ve, num) lower_bound(all(ve), num)-ve.begin()
 #define pq_pair_tB priority_queue <pair<ll,ll>, vector<pair<ll,ll> > , greater<pair<ll,ll> > >
 #define pq_pair_ts priority_queue <pair<ll,ll> > // only sort first param
