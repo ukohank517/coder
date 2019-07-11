@@ -28,6 +28,9 @@ template<typename X> bool exist(vector<X> vec, X item){return find(all(vec), ite
 ll gcd(ll a, ll b){if(b==0)return a;return gcd(b,a%b);}
 ll lcm(ll a, ll b){return a/gcd(a,b)*b;}
 ll power(ll x, ll n){if(n == 0) return 1;return  (n%2)? x*power(x, n-1)%MOD : power(x*x%MOD, n/2);}
+ll dx[]={0, 0, -1, 1};
+ll dy[]={1, -1, 0, 0};// up,down,left right
+
 
 int main(){
     cin.tie(0);
