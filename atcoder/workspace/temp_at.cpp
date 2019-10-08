@@ -10,6 +10,7 @@
 using namespace std;
 
 #define MOD 1000000007
+#define EPS 1e-10
 #define ll long long
 #define ld long double
 #define FOR(i,a,b) for(ll i=(ll)a;i<(ll)b;i++)
