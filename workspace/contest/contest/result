@@ -1,5 +1,0 @@
-g++ -g -Wall -fsanitize=undefined -Wno-deprecated -Wno-unneeded-internal-declaration a.cpp 
-./a.out
-Case #1: 1 3
-Case #2: 111 83/
-Case #3: 1111 3333
