@@ -39,15 +39,15 @@ typedef struct board {
 
 ll  H, W;
 BOARD B[2000][2000];
+ll x_score = 0;
+ll o_score = 0;
+
 
 bool func(pair<ll,ll> a, pair<ll,ll> b){
     return (a.first + a.second) > (b.first + b.second);
 }
 
-int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-
+void inp(){
     cin >> H >> W;
     
     rep(i, H){
@@ -56,27 +56,29 @@ int main(){
         
         rep(j, inp.size()){
             B[i][j].ch = inp[j];
+            B[i][j].cnt = 1;
         }
-        
     }
     
+}
+
+pair<bool, char> count_till_end(){
+    pair<bool, char> ans = mp(false, '.');
     // till side
     ll x_toleft = 2123;
     ll o_toright = 2123;
     rep(i, H){
         rep(j, W){
-            char ch = B[i][j].ch;
-            if(ch != '.'){
-                if(ch == 'x') x_toleft = min(x_toleft, j);
+            if(B[i][j].ch != '.'){
+                if(B[i][j].ch == 'x') x_toleft = min(x_toleft, j);
                 break;
             }
         }
         
         rep(k, W){
             ll j = W - 1 - k;
-            char ch = B[i][j].ch;
-            if(ch != '.'){
-                if(ch == 'o') o_toright = min(o_toright, k);
+            if(B[i][j].ch != '.'){
+                if(B[i][j].ch == 'o') o_toright = min(o_toright, k);
                 break;
             }
         }
@@ -84,19 +86,23 @@ int main(){
     
     if(min(x_toleft, o_toright) < 2123){
         cerr << "till side" << endl;
-        if(o_toright <= x_toleft) cout << "o" << endl;
-        else cout << "x" << endl;
-        return 0;
+        ans.first = true;
+        if(o_toright <= x_toleft) ans.second = 'o';
+        else ans.second = 'x';
     }
     
+    return ans;
     
+}
+
+
+
+void compress(){
     // compress
     char before_ch = '-';
     ll before_idx = -1;
     ll before_cnt = 1;
     
-    ll x_score = 0;
-    ll o_score = 0;
     
     rep(i, H){
         // first compress o
@@ -104,69 +110,69 @@ int main(){
         before_idx = -1;
         before_cnt = 1;
         rep(j, W){
-            char ch = B[i][j].ch;
-            if(ch != '.'){
-                if(ch == before_ch and ch == 'o'){
+            if(B[i][j].ch != '.'){
+                if(before_ch == 'o' and B[i][j].ch == 'o'){
                     o_score += before_cnt * (j - before_idx - 1);
-                    before_cnt ++;
                     B[i][before_idx].ch = '.';
-                    B[i][j].cnt = before_cnt;
+                    B[i][j].cnt = before_cnt + 1;
+                    
+                    before_cnt ++;
                     before_idx = j;
                 }else{
-                    if(ch == before_ch) {
-                        before_idx = j;
-                        before_cnt ++;
-                    }else{
-                        before_ch = ch;
-                        before_idx = j ;
-                        before_cnt = 1;
-                    }
+                    before_idx = j;
+                    before_ch = B[i][j].ch;
+                    before_cnt = 1;
                 }
             }
         }
         
         // then compress x
         before_ch = '-';
-        before_idx = -1;
+        before_idx = W;
         before_cnt = 1;
+        
         rep(k, W){
             ll j = W - 1 - k;
-            char ch = B[i][j].ch;
-            if(ch != '.'){
-                if(ch == before_ch and ch == 'x'){
+            if(B[i][j].ch != '.'){
+                if(before_ch == 'x' and B[i][j].ch == 'x'){
                     x_score += before_cnt * (before_idx - 1 - j);
-                    before_cnt ++;
                     B[i][before_idx].ch = '.';
-                    B[i][j].cnt = before_cnt;
+                    B[i][j].cnt = before_cnt + 1;
+                    
+                    before_cnt ++;
                     before_idx = j;
                 }else{
-                    if(ch == before_ch){
-                        before_idx = j ;
-                        before_cnt ++;
-                    }else{
-                        before_ch = ch;
-                        before_idx = j;
-                        before_cnt = 1;
-                    }
+                    before_idx = j ;
+                    before_ch = B[i][j].ch;
+                    before_cnt = 1;
                 }
             }
         }
     }
-    
-    
+}
+
+void calscore(){
     // score
-    before_ch = '-';
-    before_idx = -1;
+    char before_ch = '-';
+    ll before_idx = -1;
     vector<pair<ll,ll> > score;
     
     rep(i, H){
         rep(j, W){
             char ch = B[i][j].ch;
-            if( ch != '.'){
+            if( B[i][j].ch != '.'){
                 
                 if(before_ch == 'o' and ch == 'x'){
                     ll dist = (j - before_idx - 2);
-                    rep(k, dist)score.pb(mp(B[i][before_idx].cnt,B[i][j].cnt));
+                    if(dist % 2){
+                        score.pb(mp(B[i][before_idx].cnt,B[i][j].cnt));
+                        dist --;
+                    }
+                    
+                    rep(k, dist/2){
+                        o_score+=(B[i][before_idx].cnt);
+                        x_score+=(B[i][j].cnt);
+                    }
                 }
                 
                 before_ch = ch;
@@ -183,6 +189,24 @@ int main(){
         else x_score += score[i].second;
     }
     
+}
+int main(){
+    cin.tie(0);
+    ios::sync_with_stdio(false);
+    
+    
+    
+    inp();
+    
+    pair<bool, char> tillans = count_till_end();
+    if(tillans.first){
+        cout << tillans.second << endl;
+        return 0;
+    }
+    
+    compress();
+    calscore();
+    
     cerr << "o score :: x score" << endl;
     cerr << o_score << "    " << x_score << endl;
     if(o_score > x_score){
@@ -190,8 +214,13 @@ int main(){
     }else {
         cout << "x" << endl;
     }
-
+    
     
     //cout << fixed << setprecision(16) << ans << endl;
     return 0;
 }
+
+
+
+
+
