@@ -1,6 +1,5 @@
 open :
-	open ../contest.xcodeproj
-#	atom .
+	code .
 
 r:
 	rm -rf backup
