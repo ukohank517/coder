@@ -5,6 +5,7 @@
 #include <cstring>
 #include <map>
 #include <queue>
+#include <stack>
 #include <cmath>
 #include <complex> // complex<double> a(1.2 , 2.3);// real(): 1.2, imag()2.3
 using namespace std;
