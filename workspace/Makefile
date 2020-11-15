@@ -2,9 +2,8 @@ open :
 	code .
 
 clean:
-	rm ./*
-test:
 	ls | grep -v -E 'Makefile' | xargs rm -rf
+
 r:
 	rm -rf backup
 	mkdir backup
@@ -37,5 +36,3 @@ d:
 e:
 	g++ -g -Wall -fsanitize=undefined -Wno-deprecated -Wno-unneeded-internal-declaration e.cpp
 	./a.out
-
-
