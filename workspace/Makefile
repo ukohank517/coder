@@ -1,20 +1,17 @@
 open :
 	code .
-test:
-	[ -f myApp ] && rm myApp # remove myApp if it exists
-
 clean:
 	rm ./*
 
 r:
 	rm -rf backup
 	mkdir backup
-	[-f a.cpp] && cp a.cpp backup/a.cpp
-	[-f b.cpp] && cp b.cpp backup/b.cpp
-	[-f c.cpp] && cp c.cpp backup/c.cpp
-	[-f d.cpp] && cp d.cpp backup/d.cpp
-	[-f e.cpp] && cp e.cpp backup/e.cpp
-	[-f f.cpp] && cp f.cpp backup/f.cpp
+	if [ -f a.cpp ]; then cp a.cpp backup/a.cpp; fi;
+	if [ -f b.cpp ]; then cp b.cpp backup/b.cpp; fi;
+	if [ -f c.cpp ]; then cp c.cpp backup/c.cpp; fi;
+	if [ -f d.cpp ]; then cp d.cpp backup/d.cpp; fi;
+	if [ -f e.cpp ]; then cp e.cpp backup/e.cpp; fi;
+	if [ -f f.cpp ]; then cp f.cpp backup/f.cpp; fi;
 	cp ../library/temp_at.cpp a.cpp
 	cp ../library/temp_at.cpp b.cpp
 	cp ../library/temp_at.cpp c.cpp
