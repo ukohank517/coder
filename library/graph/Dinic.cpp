@@ -1,24 +1,23 @@
 template <class T> struct Dinic {
-    
     struct Edge {
         int to,rev; T cap;
         Edge (int t, int r, T c) : to(t), rev(r), cap(c) {}
     };
-    
+
     vector < vector< Edge > > G;
     vector < int > level, iter;
     const T INF = numeric_limits < T > ::max();
     Dinic (int n) : G(n), level(n, 0), iter(n, 0) {}
-    
+
     void add_edge(int from, int to, T cap) {
         G[from].push_back(Edge(to, (int)(G[to].size()), cap));
         G[to].push_back(Edge(from, (int)(G[from].size()) - 1, 0));
     }
-    
+
     void bfs(int s) {
         fill(level.begin(), level.end(), -1);
         queue < int > que({s});
-        
+
         level[s] = 0;
         while (!que.empty()) {
             int v = que.front();
@@ -32,7 +31,7 @@ template <class T> struct Dinic {
             }
         }
     }
-    
+
     T dfs(int cur, int t, T f) {
         if (cur == t) return f;
         for (int &i = iter[cur]; i < G[cur].size(); i++) {
@@ -47,7 +46,7 @@ template <class T> struct Dinic {
         }
         return 0;
     }
-    
+
     T max_flow(int s, int t) {
         T flow = 0, d;
         while (true) {
@@ -60,7 +59,7 @@ template <class T> struct Dinic {
         }
         return flow;
     }
-    
+
 };
 /*
  O(N*N*M)
@@ -68,6 +67,6 @@ template <class T> struct Dinic {
  Dinic<ll> D(N);
  D.add_edge(from, to , cap);
  D.max_flow(s, t);
- 
+
  don't forget -std=c++11
  */

@@ -1,26 +1,25 @@
 
 template <class T> struct Dijkstra {
-    
     struct Edge{
         int to;
         T cost;
         Edge(int _to, T _cost) : to(_to), cost(_cost) {}
     };
-    
+
     const T INF_ = numeric_limits<T>::max() / 2;
     vector< vector< Edge > > G;
     vector< T > d;
     Dijkstra (int n) : G(n), d(n) {}
-    
+
     void add_directed_edge(int a, int b, T c) {
         G[a].push_back(Edge(b,c));
     }
-    
+
     void add_undirected_edge(int a, int b, T c) {
         G[a].push_back(Edge(b,c));
         G[b].push_back(Edge(a,c));
     }
-    
+
     void init(int s) {
         priority_queue< pair<T,int>,vector< pair<T,int> >, greater< pair<T,int> > > que;
         fill(d.begin(), d.end(), INF_);
@@ -40,7 +39,7 @@ template <class T> struct Dijkstra {
             }
         }
     }
-    
+
     T dist(int a) {
         return d[a];
     }

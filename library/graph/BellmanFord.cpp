@@ -1,20 +1,19 @@
 template<class T> struct BellmanFord {
-    
     struct Edge {
         int from,to;
         T cost;
         Edge (int f, int t, T c) : from(f), to(t), cost(c) {}
     };
-    
+
     const T INF = numeric_limits<T>::max() / 2;
     vector< vector< T > > d;
     vector< Edge > edge;
     BellmanFord (int n) : d(2,vector<T>(n)) {}
-    
+
     void add_directed_edge(int from, int to, T cost) {
         edge.push_back(Edge(from,to,cost));
     }
-    
+
     void init(int s) {
         for (int i = 0; i < d[0].size(); i++) d[0][i] = INF;
         d[0][s] = 0;
@@ -30,15 +29,15 @@ template<class T> struct BellmanFord {
             if (k == 0) d[1] = d[0];
         }
     }
-    
+
     bool find_negative_loop(int v) {
         return d[0][v] != d[1][v];
     }
-    
+
     T dist(int v) {
         return d[0][v];
     }
-    
+
 };
 /*
  使用方法:

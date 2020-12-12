@@ -1,8 +1,7 @@
 struct PrimeNumbers {
-    
     vector<bool> sieve;
     vector<long long> prime;
-    
+
     PrimeNumbers (int n) : sieve(n+1,true) {
         sieve[0] = sieve[1] = false;
         for (long long i = 2; i < sieve.size(); i++) {
@@ -14,19 +13,19 @@ struct PrimeNumbers {
             }
         }
     }
-    
+
     bool isPrime(long long n) {
         return sieve[n];
     }
-    
+
     int size(void) {
         return (int) prime.size();
     }
-    
+
     long long  operator [] (int n) {
         return  prime[n];
     }
-    
+
 };
 /*
  O(N loglogN) ←早い!
