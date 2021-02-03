@@ -1,0 +1,3 @@
+[submodule "coder_history"]
+	path = coder_history
+	url = git@github.com:ukohank517/coder_history.git
